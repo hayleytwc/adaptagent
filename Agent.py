@@ -19,9 +19,9 @@ if st.button("Send"):
         prompt = f"As a workplace strategy consultant, how can I assist you with '{user_input}'?"
         temperature = 0.4
         response = openai.Completion.create(
-            engine="davinci",
+            engine="babbage-002",
             prompt=prompt,
-            max_tokens=1024,  # Adjust the response length as needed
+            max_tokens=500,  # Adjust the response length as needed
             temperature=temperature
         )
         bot_response = response.choices[0].text.strip()
