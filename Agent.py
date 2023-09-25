@@ -21,7 +21,7 @@ if st.button("Send"):
             engine="davinci",
             prompt=prompt,
             max_tokens=1024  # Adjust the response length as needed
-            temperature=0.4
+            temperature="0.4"
         )
         bot_response = response.choices[0].text.strip()
         st.text("AdaptAgent: " + bot_response)
