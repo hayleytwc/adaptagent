@@ -21,7 +21,7 @@ if st.button("Send"):
         response = openai.Completion.create(
             engine="davinci",
             prompt=prompt,
-            max_tokens=1024  # Adjust the response length as needed
+            max_tokens=1024,  # Adjust the response length as needed
             temperature=temperature
         )
         bot_response = response.choices[0].text.strip()
