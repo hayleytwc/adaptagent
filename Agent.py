@@ -2,9 +2,11 @@ import streamlit as st
 import openai
 import toml
 
-# Load API key from secrets.toml
-secrets = toml.load("secrets.toml")
-openai.api_key = secrets["openai"]["api_key"]
+# Access the OpenAI API key from st.secrets
+api_key = st.secrets["openai"]["api_key"]
+
+# Initialize the OpenAI API client with the retrieved API key
+openai.api_key = api_key
 
 # Streamlit UI
 st.title("Meet AdaptAgent - Workplace Strategy and Change Chatbot")
