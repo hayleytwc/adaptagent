@@ -17,11 +17,12 @@ if st.button("Send"):
     if user_input.strip() != "":
         # Call the GPT-3 API to get a response
         prompt = f"As a workplace strategy consultant, how can I assist you with '{user_input}'?"
+        temperature = 0.4
         response = openai.Completion.create(
             engine="davinci",
             prompt=prompt,
             max_tokens=1024  # Adjust the response length as needed
-            temperature="0.4"
+            temperature=temperature
         )
         bot_response = response.choices[0].text.strip()
         st.text("AdaptAgent: " + bot_response)
