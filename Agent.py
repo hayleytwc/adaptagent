@@ -30,7 +30,7 @@ def generate_response(prompt):
         n=1,
         stop=None,
         temperature=0.4,
-        language="en_GB"
+        language="en-GB",
     )
     return completions.choices[0].text.strip()
 
@@ -43,6 +43,10 @@ if 'generated' not in st.session_state:
 
 if 'past' not in st.session_state:
     st.session_state['past'] = []
+
+# Initialize the conversation with a greeting
+initial_greeting = "How can I help you today?"
+st.session_state.generated.append(initial_greeting)
 
 # Get user input
 user_input = st.text_input("You:", "What is workplace strategy", key="input")
