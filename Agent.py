@@ -30,7 +30,7 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 
 # Get user input
-user_input = st.text_input("You:", "Hello, how are you?", key="input")
+user_input = st.text_input("You:", "What is workplace strategy", key="input")
 
 if user_input:
     output = generate_response(user_input)
