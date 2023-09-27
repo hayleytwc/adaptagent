@@ -32,11 +32,11 @@ if st.button("Send"):
 bot_response = response.choices[0].text
 
 # Post-process the response to truncate it at the end of a sentence
-sentences = nltk.sent_tokenize(ai_response)
+sentences = nltk.sent_tokenize(bot_response)
 if len(sentences) > 0:
     truncated_response = ' '.join(sentences[:-1])  # Keep all sentences except the last one
 else:
-    truncated_response = ai_response  # No sentences found, use the original response
+    truncated_response = bot_response  # No sentences found, use the original response
 
 # Display the truncated response
 print("Truncated Response:", truncated_response)
