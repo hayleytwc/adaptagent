@@ -29,7 +29,7 @@ if st.button("Send"):
         st.text("AdaptAgent: " + bot_response)
 
 # Extract the AI response
-ai_response = response.choices[0].text
+bot_response = response.choices[0].text
 
 # Post-process the response to truncate it at the end of a sentence
 sentences = nltk.sent_tokenize(ai_response)
