@@ -47,8 +47,11 @@ if 'past' not in st.session_state:
 initial_greeting = "How can I help you today?"
 st.session_state.generated.append(initial_greeting)
 
+# Display the initial greeting
+message(initial_greeting, key="initial_greeting")
+
 # Get user input
-user_input = st.text_input("You:", "What is workplace strategy", key="input")
+user_input = st.text_input("You:", key="input")
 
 if user_input:
     output = generate_response(user_input)
@@ -57,7 +60,7 @@ if user_input:
     st.session_state.generated.append(output)
 
 # Display chat history
-if st.session_state['generated']:
+if len(st.session_state['generated']) == len(st.session_state['past']):
     for i in range(len(st.session_state['generated']) - 1, -1, -1):
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
