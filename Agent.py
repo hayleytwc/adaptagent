@@ -30,7 +30,6 @@ def generate_response(prompt):
         n=1,
         stop=None,
         temperature=0.4,
-        language="en-GB",
     )
     return completions.choices[0].text.strip()
 
