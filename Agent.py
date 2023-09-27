@@ -1,6 +1,5 @@
 import streamlit as st
 import openai
-import toml
 import nltk
 
 # Access the OpenAI API key from st.secrets
@@ -26,17 +25,12 @@ if st.button("Send"):
             temperature=temperature
         )
         bot_response = response.choices[0].text.strip()
-        st.text("AdaptAgent: " + bot_response)
 
-# Extract the AI response
-bot_response = response.choices[0].text
+        # Post-process the response to truncate it at the end of a sentence
+        sentences = nltk.sent_tokenize(bot_response)
+        if len(sentences) > 0:
+            truncated_response = ' '.join(sentences[:-1])  # Keep all sentences except the last one
+        else:
+            truncated_response = bot_response  # No sentences found, use the original response
 
-# Post-process the response to truncate it at the end of a sentence
-sentences = nltk.sent_tokenize(bot_response)
-if len(sentences) > 0:
-    truncated_response = ' '.join(sentences[:-1])  # Keep all sentences except the last one
-else:
-    truncated_response = bot_response  # No sentences found, use the original response
-
-# Display the truncated response
-print("Truncated Response:", truncated_response)
+        st.text("AdaptAgent: " + truncated_response)
