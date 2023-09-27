@@ -1,6 +1,6 @@
 import streamlit as st
 import openai
-import nltk
+import re
 
 # Access the OpenAI API key from st.secrets
 api_key = st.secrets["openai"]["api_key"]
@@ -24,13 +24,12 @@ if st.button("Send"):
             max_tokens=500,  # Adjust the response length as needed
             temperature=temperature
         )
-        bot_response = response.choices[0].text.strip()
 
-        # Post-process the response to truncate it at the end of a sentence
-        sentences = nltk.sent_tokenize(bot_response)
-        if len(sentences) > 0:
-            truncated_response = ' '.join(sentences[:-1])  # Keep all sentences except the last one
-        else:
-            truncated_response = bot_response  # No sentences found, use the original response
+        # Extract the response text
+        text = response.choices[0].text.strip()
 
-        st.text("AdaptAgent: " + truncated_response)
+        # Split the response into sentences
+        sentences = re.split(r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s", text)
+
+        # Print the sentences (for debugging)
+        print(sentences)
