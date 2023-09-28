@@ -34,7 +34,7 @@ def generate_response(prompt):
     return completions.choices[0].text.strip()
 
 # Creating the chatbot interface
-st.title("Meet AdaptAgent - Workplace Strategy and Change Chatbot")
+st.title("Meet AdaptAgent - our Workplace Strategy and Change Chatbot")
 
 # Initialize session state for storing chat history
 if 'generated' not in st.session_state:
