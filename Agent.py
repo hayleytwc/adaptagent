@@ -8,10 +8,18 @@ api_key = st.secrets["openai"]["api_key"]
 # Initialize the OpenAI API client with the retrieved API key
 openai.api_key = api_key
 
+# Define a workplace strategy knowledge base
+workplace_strategy_knowledge = """
+Workplace Strategy is the art and science of aligning an organisation's people with their physical work environment(s) to improve organisational performance. It is led by business outcomes, not design. It is the foundation for workplace transformation. It works by aligning people outcomes (such as behaviours and perceptions) and translating these into a recipe for the design and operation of their workplace environments.
+It includes: management consulting, workforce discovery activities, workspace analytics, occupancy studies, clarification of the future state, leadership alignment, design requirements and technology requirements.
+It does not include: Interior design, Architecture, Project Management, Technology expertise, Organisational Development or Organisational Psychology.
+Change management supports Workplace Strategy by helping to deliver on the people outcomes. It includes capability building, influencing, alignment and change leadership. It does not include Interior design, Architecture, Project Management, Technology expertise, Organisational Development or Organisational Psychology.
+"""
+
 def generate_response(prompt):
     completions = openai.Completion.create(
         engine="text-davinci-003",
-        prompt=prompt,
+        prompt=prompt + workplace_strategy_knowledge,
         max_tokens=1024,
         n=1,
         stop=None,
