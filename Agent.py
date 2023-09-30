@@ -37,7 +37,13 @@ if 'generated' not in st.session_state:
 if 'past' not in st.session_state:
     st.session_state['past'] = []
 
-# Get user input
+# Display chat history
+if st.session_state['generated']:
+    for i in range(len(st.session_state['generated']) - 1, -1, -1):
+        message(st.session_state["generated"][i], key=str(i))
+        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
+
+# Get user input below the output
 user_input = st.text_input("You:", "What is workplace strategy?", key="input")
 
 if user_input:
@@ -45,9 +51,3 @@ if user_input:
     # Store the conversation history
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
-
-# Display chat history
-if st.session_state['generated']:
-    for i in range(len(st.session_state['generated']) - 1, -1, -1):
-        message(st.session_state["generated"][i], key=str(i))
-        message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
