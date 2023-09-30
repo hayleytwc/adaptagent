@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_chat import message
 
 # Set your OpenAI API key
-openai.api_key = st.secrets["api_secret"]
+openai.api_key = st.secrets["api_key"]
 
 def generate_response(prompt):
     completions = openai.Completion.create(
