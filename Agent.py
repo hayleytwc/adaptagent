@@ -35,9 +35,6 @@ if st.session_state['generated']:
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
- # Clear user input
-        st.session_state.user_input = ""
-
 if user_input:
     output = generate_response(user_input)
     # Store the conversation history
