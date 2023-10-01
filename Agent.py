@@ -38,11 +38,11 @@ if st.session_state['generated']:
  # Clear user input
         st.session_state.user_input = ""
 
-# Get user input
-user_input = st.text_input("You:", "Hello, how are you?", key="input")
-
 if user_input:
     output = generate_response(user_input)
     # Store the conversation history
     st.session_state.past.append(user_input)
     st.session_state.generated.append(output)
+
+# Get user input
+user_input = st.text_input("You:", "Hello, how are you?", key="input")
