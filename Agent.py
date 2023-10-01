@@ -35,6 +35,9 @@ if st.session_state['generated']:
         message(st.session_state["generated"][i], key=str(i))
         message(st.session_state['past'][i], is_user=True, key=str(i) + '_user')
 
+ # Clear user input
+        st.session_state.user_input = ""
+
 # Get user input
 user_input = st.text_input("You:", "Hello, how are you?", key="input")
 
